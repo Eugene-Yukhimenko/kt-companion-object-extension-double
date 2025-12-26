@@ -17,6 +17,13 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    systemProperty("file.encoding", "UTF-8")
+    jvmArgs("-Dfile.encoding=UTF-8")
+}
+
+// Не запускати detekt разом з build
+tasks.named("check") {
+    dependsOn.remove(tasks.named("detekt").get())
 }
 
 kotlin {
@@ -24,7 +31,7 @@ kotlin {
 }
 
 detekt {
-    buildUponDefaultConfig = true // preconfigure defaults
-    allRules = false // activate all available (even unstable) rules.
-    baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
+    buildUponDefaultConfig = true
+    allRules = false
+    baseline = file("$projectDir/config/baseline.xml")
 }

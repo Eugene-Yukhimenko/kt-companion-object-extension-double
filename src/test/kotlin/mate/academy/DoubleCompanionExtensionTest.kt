@@ -23,7 +23,7 @@ class DoubleCompanionExtensionTest {
 
     @Test
     fun testPrintClassName() {
-        Double.printClassName()
+        Double.Companion.printClassName()
         assertEquals("Class name: kotlin.Double.Companion\n", outputStreamCaptor.toString())
     }
 }
